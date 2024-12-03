@@ -3,13 +3,14 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const multer = require("multer")
 const cors = require("cors")
-
+const path = require("path")
 
 const app = express()
 dotenv.config()
 
 app.use(express.json())
 app.use(cors())
+app.use("/images", express.static(path.join(__dirname + "/images")))
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,7 +18,7 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         console.log(Date.now() + file.originalname)
-        cb(null, `${Date.now() + file.originalname}`)
+        cb(null, req.body.name)
     }
 })
 
