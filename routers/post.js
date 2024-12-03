@@ -51,7 +51,6 @@ router.get("/:id", async (req, res) => {
 })
 // get all
 router.get('/', async (req, res) => {
-    console.log("frondenddan request keldi !")
     const username = req.query.user
     const category = req.query.category
     try {
