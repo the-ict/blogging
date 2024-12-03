@@ -29,11 +29,12 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 
 
 app.post("/api/upload", upload.single("file"), (req, res) => {
-    res.status(200).json({message: "file yuklandi !"})
+    res.status(200).json({ message: "file yuklandi !" })
 })
 app.use("/api/auth", require("./routers/auth"))
 app.use("/api/user", require("./routers/user"))
 app.use("/api/post", require("./routers/post"))
+app.use("/api/categories", require("./routers/categories"));
 
 
 app.listen(process.env.PORT || 3000, () => {
