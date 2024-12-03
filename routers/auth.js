@@ -27,9 +27,9 @@ router.post("/login", async (req, res) => {
         const { password, username } = req.body
 
         const oneUser = await User.findOne({ username })
-        if (oneUser) return res.status(404).json({ message: "xech qanday foydalanuvchi topilmadi !" })
+        if (!oneUser) return res.status(404).json({ message: "xech qanday foydalanuvchi topilmadi !" })
         const validatedPassword = bcrypt.compareSync(password, oneUser.password)
-        if (validatedPassword) return res.status(400).json({ message: "malumotlar no'tog'ri !" })
+        if (!validatedPassword) return res.status(400).json({ message: "malumotlar no'tog'ri !" })
 
         res.status(200).json(oneUser);
     } catch (error) {
