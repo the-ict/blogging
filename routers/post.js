@@ -34,7 +34,7 @@ router.delete("/:id", async (req, res) => {
         if (req.body.username === onePost.username) {
             await Post.findByIdAndDelete(req.params.id)
 
-            res.status(200).json({message: "Post o'chirib tashlandi !"})
+            res.status(200).json({ message: "Post o'chirib tashlandi !" })
         } else {
             res.status(300).json({ message: "Siz faqat o'zingizni postingizni o'chirib tashlay olasiz !" })
         }
